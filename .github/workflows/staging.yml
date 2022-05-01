@@ -29,6 +29,7 @@ jobs:
       - name: Deploy Functions
         run: |
           cd functions
+          npm i -g azure-functions-core-tools@4 --unsafe-perm true
           npm run deploy
           cd ..
       - name: Logout from AZ
