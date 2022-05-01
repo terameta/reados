@@ -22,6 +22,29 @@ jobs:
       - run: |
           az functionapp list --output table
 
+  azlogout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure CLI Logout
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az logout
+            az cache purge
+            az account clear
+
+
+  azcrosscheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure CLI Cross Check
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az logout
+            az cache purge
+            az account clear
+
 #  # This workflow contains a single job called "build"
 #  build:
 #    # The type of runner that the job will run on
