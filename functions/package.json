@@ -7,8 +7,7 @@
 		"watch": "tsc -w",
 		"prestart": "npm run build",
 		"start": "func start",
-		"deploy:staging": "func azure functionapp publish readosfu --build remote --slot staging",
-		"deploy:production": "func azure functionapp publish readosfu --build remote",
+		"deploy": "func azure functionapp publish readosfu --build remote",
 		"test": "echo \"No tests yet...\""
 	},
 	"dependencies": {
