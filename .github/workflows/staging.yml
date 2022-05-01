@@ -20,7 +20,7 @@ jobs:
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
       - run: |
-          az webapp list --query "[?state=='Running']"
+          az functionapp list --output table
 
 #  # This workflow contains a single job called "build"
 #  build:
