@@ -28,8 +28,11 @@ jobs:
         run: ls -lah
       - name: Deploy Functions
         run: |
+          cd functions
+          ls -lah
           npm i -g azure-functions-core-tools@4 --unsafe-perm true
           npm run deploy
+          cd ..
       - name: Logout from AZ
         uses: azure/CLI@v1
         with:
