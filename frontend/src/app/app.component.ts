@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
 				The change is just done, testing CDN <br />
 				<hr />
 				Automatically deployed to storage and CDN purged
+				<hr />
+				Even the purge name is fixed
 			</h1>
 			<span style="display: block">{{ title }} app is running!</span>
 			<img
