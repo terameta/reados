@@ -44,8 +44,8 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob delete-batch -s '$web' --account-name readossa
-            az storage blob upload-batch --account-name readossa --auth-mode key --overwrite true -d '$web' -s ./frontend/dist/reados
+            az storage blob delete-batch -s '$web' --account-name readossa --connection-string ${{secrets.READOSSA_CONNSTR}}
+            az storage blob upload-batch --account-name readossa --auth-mode key --overwrite true -d '$web' -s ./frontend/dist/reados --connection-string ${{secrets.READOSSA_CONNSTR}}
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
         with:
