@@ -31,6 +31,7 @@ jobs:
           cd functions
           ls -lah
           npm i -g azure-functions-core-tools@4 --unsafe-perm true
+          func azure functionapp fetch-app-settings readosfu
           npm run deploy
           cd ..
       - name: Logout from AZ
