@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 		<div style="text-align:center" class="content">
 			<h1>
 				Welcome to {{ title }}! <br />
-				I change is just done, testing CDN <br />
+				The change is just done, testing CDN <br />
 				<hr />
 				Automatically deployed to storage and CDN purged
 			</h1>
