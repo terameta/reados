@@ -12,16 +12,15 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-	azlogin:
-		runs-on: ubuntu-latest
-		steps:
-		- name: Login via AZ Module
-			uses: azure/login@v1
-			with:
-				creds: ${{secrets.AZURE_CREDENTIALS}}
-
-		- run: |
-        az webapp list --query "[?state=='Running']"
+  azlogin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login via AZ Module
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+      - run: |
+          az webapp list --query "[?state=='Running']"
 
 #  # This workflow contains a single job called "build"
 #  build:
