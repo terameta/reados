@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 				<hr />
 				Automatically deployed to storage and CDN purged
 				<hr />
-				Even the purge name is fixed
+				All files are also deleted from storage account now
 			</h1>
 			<span style="display: block">{{ title }} app is running!</span>
 			<img

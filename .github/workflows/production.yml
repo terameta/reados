@@ -26,14 +26,14 @@ jobs:
         uses: actions/checkout@v3
       - name: List Files
         run: ls -lah
-      #      - name: Deploy Backend
-      #        run: |
-      #          cd functions
-      #          ls -lah
-      #          npm i -g azure-functions-core-tools@4 --unsafe-perm true
-      #          func azure functionapp fetch-app-settings readosfu
-      #          npm run deploy
-      #          cd ..
+      - name: Deploy Backend
+        run: |
+          cd functions
+          ls -lah
+          npm i -g azure-functions-core-tools@4 --unsafe-perm true
+          func azure functionapp fetch-app-settings readosfu
+          npm run deploy
+          cd ..
       - name: Build Frontend
         run: |
           cd frontend
@@ -44,6 +44,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az storage blob delete-batch -s '$web' --account-name readossa
             az storage blob upload-batch --account-name readossa --auth-mode key --overwrite true -d '$web' -s ./frontend/dist/reados
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
