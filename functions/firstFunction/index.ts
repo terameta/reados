@@ -27,6 +27,8 @@ const httpTrigger: AzureFunction = async function (
 		body: {
 			result: 'prdafterrecreate',
 			rows: res.rows,
+			host: req.headers.host,
+			origin: req.headers.origin,
 		},
 	};
 };

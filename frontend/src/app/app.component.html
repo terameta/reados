@@ -1,0 +1,367 @@
+<button type="button" class="btn btn-xs me-1 btn-primary" (click)="sendRequestandShow()">Primary</button>
+
+<!--The content below is only a placeholder and can be replaced.-->
+<!-- <div style="text-align:center" class="content">
+			<h1>
+				Welcome to {{ title }}! <br />
+				The change is just done, testing CDN <br />
+				<hr />
+				Automatically deployed to storage and CDN purged
+				<hr />
+				All files are also deleted from storage account now
+			</h1>
+			<span style="display: block">{{ title }} app is running!</span>
+			<img
+				width="300"
+				alt="Angular Logo"
+				src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+			/>
+		</div>
+		<h2>Here are some links to help you start:</h2>
+		<ul>
+			<li>
+				<h2>
+					<a target="_blank" rel="noopener" href="https://angular.io/tutorial"
+						>Tour of Heroes</a
+					>
+				</h2>
+			</li>
+			<li>
+				<h2>
+					<a target="_blank" rel="noopener" href="https://angular.io/cli"
+						>CLI Documentation</a
+					>
+				</h2>
+			</li>
+			<li>
+				<h2>
+					<a target="_blank" rel="noopener" href="https://blog.angular.io/"
+						>Angular blog</a
+					>
+				</h2>
+			</li>
+		</ul>
+		<router-outlet></router-outlet> -->
+
+<!-- <!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Single-file Bootstrap template"/>
+    <meta name="author" content="Anton Staroverov (http://tonystar.me)"/>
+    <meta name="generator" content="Bootstrap Template (http://bootstrap.tonystar.me/template)"/>
+    <link rel="icon" href="//cdn.rawgit.com/twbs/bootstrap/v3.3.5/docs/favicon.ico"/>
+    <title>Bootstrap Template</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.rawgit.com/tonystar/bootstrap-plugins/master/dist/css/bootstrap-plugins.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css"/>
+
+  </head>
+  <body> -->
+<div class="container-fluid mt-3" style="overflow-y: auto;height: calc(100vh - 30px);">
+	<!-- <div class="row my-3">
+		<div class="col-3">
+			<h3>Modal</h3>
+		</div>
+		<div class="col-9">
+			<div class="modal" style="display: block !important;" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header modal-header-primary">
+							<h5 class="modal-title">Modal title</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<p>Modal body text goes here.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+								Close
+							</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Backgrounds</h3>
+		</div>
+		<div class="col-9">
+			<div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+			<div class="p-3 mb-2 bg-secondary text-dark">.bg-secondary</div>
+			<div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+			<div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+			<div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+			<div class="p-3 mb-2 bg-info text-white">.bg-info</div>
+			<div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+			<div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+			<div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+			<div class="p-3 mb-2 bg-red text-white">.bg-red</div>
+			<div class="p-3 mb-2 bg-green text-dark">.bg-green</div>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Headers</h3>
+		</div>
+		<div class="col-9">
+			<h1>h1. Bootstrap heading</h1>
+			<h2>h2. Bootstrap heading</h2>
+			<h3>h3. Bootstrap heading</h3>
+			<h4>h4. Bootstrap heading</h4>
+			<h5>h5. Bootstrap heading</h5>
+			<h6>h6. Bootstrap heading</h6>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Cards</h3>
+		</div>
+		<div class="col-9">
+			<div class="card">
+				<div class="card-header">Card Header</div>
+				<div class="card-body">
+					<h5 class="card-title">Card-Title</h5>
+					<p class="card-text">Card-Text in a p tag.</p>
+					<a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+				<div class="card-footer">2 days ago</div>
+			</div>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons X-Small</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn btn-xs me-1 btn-primary">Primary</button>
+			<button type="button" class="btn btn-xs me-1 btn-secondary">
+				Secondary
+			</button>
+			<button type="button" class="btn btn-xs me-1 btn-success">Success</button>
+			<button type="button" class="btn btn-xs me-1 btn-danger">Danger</button>
+			<button type="button" class="btn btn-xs me-1 btn-warning">Warning</button>
+			<button type="button" class="btn btn-xs me-1 btn-info">Info</button>
+			<button type="button" class="btn btn-xs me-1 btn-light">Light</button>
+			<button type="button" class="btn btn-xs me-1 btn-dark">Dark</button>
+			<button type="button" class="btn btn-xs me-1 btn-white">White</button>
+			<button type="button" class="btn btn-xs me-1 btn-red">Red</button>
+			<button type="button" class="btn btn-xs me-1 btn-green">Green</button>
+			<button type="button" class="btn btn-xs me-1 btn-link">Link</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons Small</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn btn-sm me-1 btn-primary">Primary</button>
+			<button type="button" class="btn btn-sm me-1 btn-secondary">
+				Secondary
+			</button>
+			<button type="button" class="btn btn-sm me-1 btn-success">Success</button>
+			<button type="button" class="btn btn-sm me-1 btn-danger">Danger</button>
+			<button type="button" class="btn btn-sm me-1 btn-warning">Warning</button>
+			<button type="button" class="btn btn-sm me-1 btn-info">Info</button>
+			<button type="button" class="btn btn-sm me-1 btn-light">Light</button>
+			<button type="button" class="btn btn-sm me-1 btn-dark">Dark</button>
+			<button type="button" class="btn btn-sm me-1 btn-white">White</button>
+			<button type="button" class="btn btn-sm me-1 btn-red">Red</button>
+			<button type="button" class="btn btn-sm me-1 btn-green">Green</button>
+			<button type="button" class="btn btn-sm me-1 btn-link">Link</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons Normal</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn me-1 btn-primary">Primary</button>
+			<button type="button" class="btn me-1 btn-secondary">Secondary</button>
+			<button type="button" class="btn me-1 btn-success">Success</button>
+			<button type="button" class="btn me-1 btn-danger">Danger</button>
+			<button type="button" class="btn me-1 btn-warning">Warning</button>
+			<button type="button" class="btn me-1 btn-info">Info</button>
+			<button type="button" class="btn me-1 btn-light">Light</button>
+			<button type="button" class="btn me-1 btn-dark">Dark</button>
+			<button type="button" class="btn me-1 btn-white">White</button>
+			<button type="button" class="btn me-1 btn-red">Red</button>
+			<button type="button" class="btn me-1 btn-green">Green</button>
+			<button type="button" class="btn me-1 btn-link">Link</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons Large</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn btn-lg me-1 btn-primary">Primary</button>
+			<button type="button" class="btn btn-lg me-1 btn-secondary">
+				Secondary
+			</button>
+			<button type="button" class="btn btn-lg me-1 btn-success">Success</button>
+			<button type="button" class="btn btn-lg me-1 btn-danger">Danger</button>
+			<button type="button" class="btn btn-lg me-1 btn-warning">Warning</button>
+			<button type="button" class="btn btn-lg me-1 btn-info">Info</button>
+			<button type="button" class="btn btn-lg me-1 btn-light">Light</button>
+			<button type="button" class="btn btn-lg me-1 btn-dark">Dark</button>
+			<button type="button" class="btn btn-lg me-1 btn-white">White</button>
+			<button type="button" class="btn btn-lg me-1 btn-red">Red</button>
+			<button type="button" class="btn btn-lg me-1 btn-green">Green</button>
+			<button type="button" class="btn btn-lg me-1 btn-link">Link</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons Circle</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn btn-circle me-1 btn-primary">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-secondary">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-success">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-danger">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-warning">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-info">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-light">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-dark">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-white">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-red">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-green">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle me-1 btn-link">
+				<i class="fa fa-cog"></i>
+			</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons Circle Large</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-primary">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-secondary">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-success">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-danger">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-warning">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-info">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-light">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-dark">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-white">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-red">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-green">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-lg me-1 btn-link">
+				<i class="fa fa-cog"></i>
+			</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Buttons Circle XLarge</h3>
+		</div>
+		<div class="col-9">
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-primary">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-secondary">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-success">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-danger">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-warning">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-info">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-light">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-dark">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-white">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-red">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-green">
+				<i class="fa fa-cog"></i>
+			</button>
+			<button type="button" class="btn btn-circle btn-xl me-1 btn-link">
+				<i class="fa fa-cog"></i>
+			</button>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-3">
+			<h3>Alerts</h3>
+		</div>
+		<div class="col-9">
+			<div class="alert alert-primary" role="alert">primary</div>
+			<div class="alert alert-secondary" role="alert">secondary</div>
+			<div class="alert alert-success" role="alert">success</div>
+			<div class="alert alert-danger" role="alert">danger</div>
+			<div class="alert alert-warning" role="alert">warning</div>
+			<div class="alert alert-info" role="alert">info</div>
+			<div class="alert alert-light" role="alert">light</div>
+			<div class="alert alert-dark" role="alert">dark</div>
+			<div class="alert alert-white" role="alert">white</div>
+			<div class="alert alert-red" role="alert">red</div>
+			<div class="alert alert-green" role="alert">green</div>
+		</div>
+	</div>
+</div>
