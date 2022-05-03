@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+	public faCog = faCog;
 	title = 'reados';
 	constructor(private httpClient: HttpClient) {}
 

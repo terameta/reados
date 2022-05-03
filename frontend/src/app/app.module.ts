@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainInterceptorInterceptor } from './core/main-interceptor.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { MainInterceptorInterceptor } from './core/main-interceptor.interceptor'
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
+		FontAwesomeModule,
 	],
 	providers: [
 		{
