@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainInterceptorInterceptor } from './core/main-interceptor.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ThemeComponent } from './main/theme/theme.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, ThemeComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
