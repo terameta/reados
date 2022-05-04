@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-	selector: 'app-sign-in',
-	templateUrl: './sign-in.component.html',
-	styleUrls: ['./sign-in.component.scss'],
+	selector: 'app-sign-up',
+	templateUrl: './sign-up.component.html',
+	styleUrls: ['./sign-up.component.scss'],
 })
-export class SignInComponent implements OnInit {
+export class SignUpComponent implements OnInit {
 	public faKey = faKey;
 
 	constructor() {}
