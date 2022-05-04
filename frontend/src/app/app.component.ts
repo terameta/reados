@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from './core/auth.service';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -9,7 +10,10 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 export class AppComponent {
 	public faCog = faCog;
 	title = 'reados';
-	constructor(private httpClient: HttpClient) {}
+	constructor(
+		private httpClient: HttpClient,
+		private authService: AuthService
+	) {}
 
 	public sendRequestandShow = (): void => {
 		console.log('sendRequestandShow');
