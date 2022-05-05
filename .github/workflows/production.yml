@@ -29,6 +29,7 @@ jobs:
       - name: Run DDL Scripts
         run: |
           cd database
+          az config set extension.use_dynamic_install=yes_without_prompt
           for file in ./*; do az postgres flexible-server execute -n ${{secrets.PG_SERVERNAME}} -u ${{secrets.PG_USERNAME}} -p ${{secrets.PG_PASSWORD}} -d ${{secrets.PG_DATABASE}} -f $file; done
           cd ..
       - name: Deploy Backend
