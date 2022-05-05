@@ -21,16 +21,23 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
       - name: Pull our code
         uses: actions/checkout@v3
+      - name: File Replacements
+        run: |
+          cd globals
+          rm settings.ts
+          mv settings.prod.ts settings.ts
+          cd ..
       - name: Run DDL Scripts
         run: |
           cd database
+          cd ddl-scripts
           az config set extension.use_dynamic_install=yes_without_prompt
           for file in ./*; do az postgres flexible-server execute -n ${{secrets.PG_SERVERNAME}} -u ${{secrets.PG_USERNAME}} -p ${{secrets.PG_PASSWORD}} -d ${{secrets.PG_DATABASE}} -f $file; done
+          cd ..
           cd ..
       - name: Deploy Backend
         run: |
           cd functions
-          ls -lah
           npm i -g azure-functions-core-tools@4 --unsafe-perm true
           func azure functionapp fetch-app-settings readosfu
           npm run deploy
