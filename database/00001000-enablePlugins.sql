@@ -1,2 +1,2 @@
 -- needed for UUID generation => gen_random_uuid
-create extension "pgcrypto";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
