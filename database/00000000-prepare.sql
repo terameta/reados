@@ -17,3 +17,5 @@
 -- \i 00003600-ensureTimeStampZFieldinTable.sql
 
 -- \i 00004000-user.sql
+
+SELECT NOW();
