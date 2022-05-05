@@ -19,13 +19,8 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
-      - name: List Function Applications
-        run: |
-          az functionapp list --output table
       - name: Pull our code
         uses: actions/checkout@v3
-      - name: List Files
-        run: ls -lah
       - name: Run DDL Scripts
         run: |
           cd database
