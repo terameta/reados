@@ -39,6 +39,8 @@ jobs:
         run: |
           npm i -g azure-functions-core-tools@4 --unsafe-perm true
           func azure functionapp fetch-app-settings readosfu
+          ls -lah
+          thisisnotanexistingcommand
           npm run deploy
       - name: Build Frontend
         run: |
