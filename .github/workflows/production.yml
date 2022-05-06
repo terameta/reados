@@ -44,9 +44,11 @@ jobs:
           npm run deploy
       - name: Build Frontend
         run: |
+          rm package.json
+          mv package.json.original package.json
           cd frontend
           npm i
-          npm run build
+          npm run build:fe
           cd ..
       - name: Upload Frontend
         uses: azure/CLI@v1
