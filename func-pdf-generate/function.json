@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/pdfGenerate/index.js"
+  "scriptFile": "../dist/func-pdf-generate/index.js"
 }
