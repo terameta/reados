@@ -2,10 +2,12 @@
 @import "./reados-styles/utilities.scss";
 
 /* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+//  bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
-@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import "../../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
 
 html,
 body {
