@@ -4,7 +4,8 @@
 .vscode
 local.settings.json
 test
-tsconfig.json
 node_modules/
+node_modules
 dist
 frontend
+frontend/*
