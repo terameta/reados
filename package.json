@@ -10,7 +10,7 @@
 		"watch": "cd functions; tsc -w",
 		"prestart": "npm run build",
 		"start": "cd functions; func start",
-		"deploy": "func azure functionapp publish readosfu --build remote"
+		"deploy": "cd functions; func azure functionapp publish readosfu --build remote"
 	},
 	"dependencies": {
 		"@angular/animations": "~13.3.0",
