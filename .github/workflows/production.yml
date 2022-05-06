@@ -38,6 +38,8 @@ jobs:
       - name: Deploy Backend
         run: |
           cd functions
+          cp ../package.json ./package.json
+          cp ../package-lock.json ./package-lock.json
           npm i -g azure-functions-core-tools@4 --unsafe-perm true
           func azure functionapp fetch-app-settings readosfu
           npm run deploy
