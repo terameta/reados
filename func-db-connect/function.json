@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/firstFunction/index.js"
+  "scriptFile": "../dist/func-db-connect/index.js"
 }
