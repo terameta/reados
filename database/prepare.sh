@@ -1,4 +1,4 @@
-content=$(cat ../functions/local.settings.json);
+content=$(cat ../local.settings.json);
 dbhost=$(echo $content | jq -r '.Values.dbhost');
 dbuser=$(echo $content | jq -r '.Values.dbuser');
 dbpass=$(echo $content | jq -r '.Values.dbpass');
@@ -9,4 +9,9 @@ echo Pass $dbpass
 echo Host $dbhost
 echo Port $dbport
 echo Name $dbname
-psql -h $dbhost -U $dbuser -p $dbport -d $dbname -f 00000000-prepare.sql
+
+
+cd ddl-scripts
+az config set extension.use_dynamic_install=yes_without_prompt
+for file in ./*; do echo $file; psql -h $dbhost -U $dbuser -p $dbport -d $dbname -f $file; done
+cd ..

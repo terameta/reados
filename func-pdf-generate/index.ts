@@ -10,7 +10,7 @@ const httpTrigger: AzureFunction = async function (
 		host: process.env.dbhost,
 		database: 'reados',
 		password: process.env.dbpass,
-		port: parseInt(process.env.dbport, 10),
+		port: parseInt(process.env.dbport || '5432', 10),
 		ssl: process.env.dbsslm === 'require' ? true : false,
 	});
 	await client.connect();

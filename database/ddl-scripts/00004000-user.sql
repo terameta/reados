@@ -6,6 +6,8 @@ EXECUTE ensureIDinTable('user');
 EXECUTE checkPrimaryKey('user');
 EXECUTE ensureTextFieldinTable('user', 'email');
 EXECUTE ensureTextFieldinTable('user', 'password');
+EXECUTE ensureTextFieldinTable('user', 'type');
+EXECUTE ensureUUIDFieldinTable('user', 'client');
 EXECUTE ensureTimeStampZFieldinTable('user', 'created_at');
 ALTER TABLE IF EXISTS public."user" ALTER COLUMN created_at SET DEFAULT now();
 
