@@ -32,11 +32,6 @@ const httpTrigger: AzureFunction = async (
 	context.res = isValid
 		? { status: 200 }
 		: { status: 400, body: validationErrors };
-
-	// context.res = {
-	// 	status: isValid ? 200 : 400,
-	// 	body: isValid ? null : validationErrors,
-	// };
 };
 
 export default httpTrigger;
