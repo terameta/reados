@@ -17,9 +17,23 @@ export class SignUpComponent implements OnInit {
 
 	public onSubmit = async (form: NgForm): Promise<void> => {
 		console.log(form.value);
-		const result = await this.httpClient
-			.post('/client-sign-up', form.value)
-			.toPromise();
-		console.log(result);
+		this.httpClient.post('/client-sign-up', form.value).subscribe(
+			{
+				next: (data) => {
+					console.log('Next', data);
+				},
+				error: (error) => {
+					console.log(error);
+					console.log(error.error);
+				},
+				complete: console.info,
+			}
+			// (result) => {
+			// 	console.log(result);
+			// },
+			// (error) => {
+			// 	console.log(error);
+			// }
+		);
 	};
 }
