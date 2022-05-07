@@ -8,8 +8,9 @@ EXECUTE ensureTextFieldinTable('user', 'email');
 EXECUTE ensureTextFieldinTable('user', 'password');
 EXECUTE ensureTextFieldinTable('user', 'type');
 EXECUTE ensureUUIDFieldinTable('user', 'client');
-EXECUTE ensureTimeStampZFieldinTable('user', 'created_at');
-ALTER TABLE IF EXISTS public."user" ALTER COLUMN created_at SET DEFAULT now();
+EXECUTE ensureTimeStampZFieldinTable('user', 'createdAt');
+ALTER TABLE IF EXISTS public."user" ALTER COLUMN "createdAt" SET DEFAULT now();
+ALTER TABLE IF EXISTS public."user" DROP COLUMN IF EXISTS created_at;
 
 CREATE UNIQUE INDEX IF NOT EXISTS user_email_unique
     ON public."user" USING btree

@@ -1,59 +1,68 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-import isEmail from 'validator/lib/isEmail';
-import isStrongPassword from 'validator/lib/isStrongPassword';
 import { sign } from 'jsonwebtoken';
-import { getClient } from '../utilities/database/generate-client';
+import { getDB } from '../utilities/database/generate-connection';
+import { validateCredentials } from '../utilities/validation/credential-validation';
 
 const httpTrigger: AzureFunction = async (
 	context: Context,
 	req: HttpRequest
 ): Promise<void> => {
 	const { email, password } = req.body;
-	let isValid = true;
-	const validationErrors: string[] = [];
-	if (
-		!isStrongPassword(password, {
-			minLength: 8,
-			minLowercase: 1,
-			minUppercase: 1,
-			minNumbers: 1,
-			minSymbols: 1,
-		})
-	) {
-		isValid = false;
-		validationErrors.push(
-			'Password must be at least 8 characters long, contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol.'
-		);
-	}
+	const validationResult = await validateCredentials({ email, password });
 
-	if (!isEmail(email)) {
-		isValid = false;
-		validationErrors.push('Email must be a valid email address.');
-	}
+	let userId = '';
 
-	if (isValid) {
-		const client = await getClient();
-		const { rowCount } = await client.query(
+	if (validationResult.isValid) {
+		const db = await getDB();
+
+		const { rowCount } = await db.query(
 			'SELECT * FROM public.user WHERE email = $1',
 			[email.toLowerCase()]
 		);
-		await client.end();
 		if (rowCount > 0) {
-			isValid = false;
-			validationErrors.push('Email is already in use.');
+			validationResult.isValid = false;
+			validationResult.errors.push('Email is already in use.');
 		}
+
+		if (validationResult.isValid) {
+			try {
+				await db.query('BEGIN');
+
+				const cResult = await db.query(
+					'INSERT INTO public."client" ("name") VALUES ($1) RETURNING id',
+					['']
+				);
+				const clientId = cResult.rows[0].id;
+
+				const uResult = await db.query(
+					'INSERT INTO public."user" ("email", "password", "client") VALUES ($1, $2, $3) RETURNING id',
+					[email.toLowerCase(), password, clientId]
+				);
+
+				await db.query('COMMIT');
+
+				const userId = uResult.rows[0].id;
+			} catch (error) {
+				await db.query('ROLLBACK');
+				throw error;
+			} finally {
+				await db.end();
+			}
+		}
+
+		await db.end();
 	}
 
 	let token: string = '';
-	if (isValid && process.env.JWT_SECRET) {
-		token = sign({ email, password }, process.env.JWT_SECRET, {
+	if (validationResult.isValid && process.env.JWT_SECRET) {
+		token = sign({ id: userId, email }, process.env.JWT_SECRET, {
 			expiresIn: '365d',
 		});
 	}
 
-	context.res = isValid
+	context.res = validationResult.isValid
 		? { status: 200, body: { token } }
-		: { status: 400, body: validationErrors };
+		: { status: 400, body: validationResult.errors };
 };
 
 export default httpTrigger;

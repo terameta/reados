@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { settings } from '@globals/settings';
+import { globalSettings } from '@globals/settings';
 import { WINDOW } from './window.providers';
 import { Router, Event } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
@@ -16,7 +16,7 @@ export class CoreDefinitionsService {
 		this.docElem = document.documentElement;
 	}
 
-	public apiURL = settings.apiURL;
+	public apiURL = globalSettings.apiURL;
 
 	public currentUrl = '';
 	public domain = '';

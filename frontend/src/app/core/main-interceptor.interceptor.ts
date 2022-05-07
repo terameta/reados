@@ -6,7 +6,7 @@ import {
 	HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { settings } from '@globals/settings';
+import { globalSettings } from '@globals/settings';
 
 @Injectable()
 export class MainInterceptorInterceptor implements HttpInterceptor {
@@ -18,7 +18,7 @@ export class MainInterceptorInterceptor implements HttpInterceptor {
 	): Observable<HttpEvent<unknown>> {
 		const toClone: any = {};
 		if (!request.url.startsWith('http')) {
-			toClone.url = settings.apiURL;
+			toClone.url = globalSettings.apiURL;
 			if (!request.url.startsWith('/')) toClone.url += '/';
 			toClone.url += request.url;
 		}

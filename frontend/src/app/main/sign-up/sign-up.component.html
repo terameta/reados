@@ -2,15 +2,26 @@
 	<main class="form-signup text-center">
 		<form #f="ngForm" (ngSubmit)="onSubmit(f)">
 			<img class="mb-4" src="/assets/logo/reados64.png" width="65" height="64">
-			<h1 class="h3 mb-3 fw-normal text-light">First Step into the Wonders of Reados</h1>
+			<h1 class="h3 mb-3 fw-normal text-light">First Step into the Wonders of {{ systemName }}</h1>
 
+			<label for="domain" class="text-start form-label text-white w-100">Pick Your URL</label>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" name="domain" placeholder="awesomecompany" (keyup)="domainKeyUp($event)"
+					ngModel>
+				<span class="input-group-text" id="cardinal-domain">.{{ cardinalDomain }}</span>
+				<span class="input-group-text" id="checker" *ngIf="isSearching">
+					<fa-icon class="fa-fw" [icon]="faCircleNotch" [spin]="true"></fa-icon>
+				</span>
+			</div>
+			<hr>
+			<label for="domain" class="text-start form-label text-white w-100">Enter Your Credentials</label>
 			<div class="form-floating">
 				<input type="email" class="form-control" name="email" placeholder="name@example.com" ngModel>
-				<label for="floatingInput">Email address</label>
+				<label for="email">Email address</label>
 			</div>
 			<div class="form-floating">
 				<input type="password" class="form-control" name="password" placeholder="Password" ngModel>
-				<label for="floatingPassword">Password</label>
+				<label for="password">Password</label>
 			</div>
 
 

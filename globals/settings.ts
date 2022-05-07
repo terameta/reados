@@ -1,5 +1,7 @@
-import { Settings } from './settings.type';
+import { GlobalSettings } from './settings.type';
 
-export const settings: Settings = {
+export const globalSettings: GlobalSettings = {
 	apiURL: 'http://localhost:7071/api',
+	cardinalDomain: 'reados.com',
+	systemName: 'Reados',
 };

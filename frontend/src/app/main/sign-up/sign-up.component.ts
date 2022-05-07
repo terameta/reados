@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { faKey, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { globalSettings } from '@globals/settings';
+import { Subject } from 'rxjs';
+import {
+	debounceTime,
+	distinctUntilChanged,
+	filter,
+	switchMap,
+	tap,
+} from 'rxjs/operators';
 
 @Component({
 	selector: 'app-sign-up',
@@ -10,10 +19,37 @@ import { NgForm } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 	public faKey = faKey;
+	public faCircleNotch = faCircleNotch;
+	public cardinalDomain = globalSettings.cardinalDomain;
+	public systemName = globalSettings.systemName;
+
+	public isSearching = false;
+
+	private domainSubject = new Subject<string>();
+
+	@ViewChild('domain', { static: true }) domainInput!: ElementRef;
 
 	constructor(private httpClient: HttpClient) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		// fromEvent(this.domainInput.nativeElement, 'keyUp')
+		this.domainSubject
+			.pipe(
+				filter((value: string) => value.length > 2),
+				distinctUntilChanged(),
+				tap(() => {
+					this.isSearching = true;
+				}),
+				debounceTime(1000),
+				switchMap((domain) =>
+					this.httpClient.post('/func-client-check-domain', { domain })
+				)
+			)
+			.subscribe((result) => {
+				console.log(result);
+				this.isSearching = false;
+			});
+	}
 
 	public onSubmit = async (form: NgForm): Promise<void> => {
 		this.httpClient.post('/func-client-sign-up', form.value).subscribe({
@@ -28,5 +64,11 @@ export class SignUpComponent implements OnInit {
 				console.log('Complete');
 			},
 		});
+	};
+
+	public domainKeyUp = (event: KeyboardEvent): void => {
+		// console.log('Keyup', event.key);
+		// console.log( ( event.target as any ).value );
+		this.domainSubject.next((event.target as HTMLInputElement).value);
 	};
 }

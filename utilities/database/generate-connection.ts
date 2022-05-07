@@ -1,6 +1,6 @@
 import { Client } from 'pg';
 
-export const getClient = async () => {
+export const getDB = async () => {
 	const client = new Client({
 		user: process.env.dbuser,
 		host: process.env.dbhost,
