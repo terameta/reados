@@ -15,6 +15,17 @@ export const validateCredentials = async (payload: {
 		errors: [],
 	};
 
+	if (typeof payload.email !== 'string') {
+		toReturn.isValid = false;
+		toReturn.errors.push('Email must be a string.');
+		return toReturn;
+	}
+
+	if (typeof payload.password !== 'string') {
+		toReturn.isValid = false;
+		toReturn.errors.push('Password must be a string.');
+	}
+
 	if (
 		!isStrongPassword(payload.password, {
 			minLength: 8,
