@@ -248,3 +248,6 @@ __azurite_db*__.json
 
 # Angular Cache
 .angular
+
+# Others
+.dccache
