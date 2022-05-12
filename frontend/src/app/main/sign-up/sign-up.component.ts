@@ -27,12 +27,9 @@ export class SignUpComponent implements OnInit {
 
 	private domainSubject = new Subject<string>();
 
-	@ViewChild('domain', { static: true }) domainInput!: ElementRef;
-
 	constructor(private httpClient: HttpClient) {}
 
 	ngOnInit(): void {
-		// fromEvent(this.domainInput.nativeElement, 'keyUp')
 		this.domainSubject
 			.pipe(
 				filter((value: string) => value.length > 2),

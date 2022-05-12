@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ThemeComponent } from '../theme/theme.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ContainerComponent } from './container/container.component';
 import { ContentComponent } from './content/content.component';
 
@@ -27,11 +26,6 @@ const routes: Routes = [
 		ContainerComponent,
 		ContentComponent,
 	],
-	imports: [
-		CommonModule,
-		RouterModule.forChild(routes),
-		FontAwesomeModule,
-		TooltipModule.forRoot(),
-	],
+	imports: [CommonModule, RouterModule.forChild(routes), FontAwesomeModule],
 })
 export class HomeModule {}
