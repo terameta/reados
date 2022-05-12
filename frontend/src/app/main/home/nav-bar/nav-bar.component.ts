@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import { CoreDefinitionsService } from 'src/app/core/core-definitions.service';
 
 @Component({
@@ -8,9 +7,6 @@ import { CoreDefinitionsService } from 'src/app/core/core-definitions.service';
 	styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-	public faExpand = faExpand;
-	public faCompress = faCompress;
-
 	constructor(public coreDefinitionsService: CoreDefinitionsService) {}
 
 	ngOnInit(): void {}

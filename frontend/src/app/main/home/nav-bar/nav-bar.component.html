@@ -90,10 +90,7 @@
 <!-- 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-1">
 	<div class="container-fluid">
-		<a class="navbar-brand fw-bold" routerLink="/">
-			<img src="/assets/logo/reados24.png" alt="RL" class="d-inline-block align-text-top">
-			READOS
-		</a>
+		
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -105,14 +102,10 @@
 						routerLinkActive="border-bottom border-3 border-white">Theme</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-white" routerLink="sign-in" routerLinkActive="border-bottom border-3 border-white">
-						Sign In
-					</a>
+					
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-white" routerLink="sign-up" routerLinkActive="border-bottom border-3 border-white">
-						Sign Up
-					</a>
+					
 				</li>
 				<li class="nav-item ms-5">
 					<a class="nav-link" tooltip="Toggle Zen Mode" placement="auto" role="button"
@@ -126,6 +119,38 @@
 	</div>
 </nav> -->
 
-<nav class="fixed top-0 left-0 w-full font-bold bg-primary">
-	This is navbar
+<nav class="fixed top-0 left-0 w-full font-bold shadow-2 bg-surface">
+	<div class="flex align-items-center py-2 px-3">
+		<a class="font-bold flex align-items-center no-underline text-3xl" routerLink="/">
+			<img src="/assets/logo/reados24.png" alt="RL" class="mr-3 text-color-secondary">
+			<span class="text-color">READOS</span>
+		</a>
+		<span class="ml-auto">
+			<a class="no-underline text-color mr-3" routerLink="sign-in"
+				routerLinkActive="border-bottom border-3 border-white">
+				Sign In
+			</a>
+			<a class="text-color no-underline" routerLink="sign-up" routerLinkActive="border-bottom border-3 border-white">
+				Sign Up
+			</a>
+		</span>
+	</div>
 </nav>
+
+<!-- <div class="flex flex-wrap align-items-center justify-content-center card-container">
+	<div class="surface-overlay border-round border-1 shadow-1 p-5 py-0">
+			<img src="/assets/logo/reados24.png" alt="RL">
+		</a>
+		<a class="font-bold vertical-align-middle" routerLink="/">
+			<span class="vertical-align-middle">READOS</span>
+		</a>
+		<span class="vertical-align-baseline">baseline</span>
+		<span class="vertical-align-bottom">top</span>
+		<span class="vertical-align-middle">middle</span>
+		<span class="vertical-align-top">bottom</span>
+		<span class="vertical-align-text-top">text-top</span>
+		<span class="vertical-align-text-bottom">text-bottom</span>
+		<span class="vertical-align-sub">sub</span>
+		<span class="vertical-align-super">super</span>
+	</div>
+</div> -->

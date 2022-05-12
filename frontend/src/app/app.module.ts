@@ -6,18 +6,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainInterceptorInterceptor } from './core/main-interceptor.interceptor';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ThemeComponent } from './main/theme/theme.component';
 import { WINDOW_PROVIDERS } from './core/window.providers';
 
 @NgModule({
-	declarations: [AppComponent, ThemeComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
-		FontAwesomeModule,
 	],
 	providers: [
 		{

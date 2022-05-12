@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faKey, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { globalSettings } from '@globals/settings';
@@ -18,8 +17,6 @@ import {
 	styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-	public faKey = faKey;
-	public faCircleNotch = faCircleNotch;
 	public cardinalDomain = globalSettings.cardinalDomain;
 	public systemName = globalSettings.systemName;
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-sign-in',
@@ -7,8 +6,6 @@ import { faKey } from '@fortawesome/free-solid-svg-icons';
 	styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-	public faKey = faKey;
-
 	constructor() {}
 
 	ngOnInit(): void {}
