@@ -1,30 +1,41 @@
-<div style="padding: 4rem 12rem;" class="font-bold flex align-items-center no-underline text-3xl">
-	<img src="/assets/logo/reados32.png" alt="RL" class="mr-5 text-color-secondary">
+<div style="padding: 4rem 12rem;" class="font-bold flex align-items-center no-underline text-4xl">
+	<img src="/assets/logo/reados32.png" alt="RL" class="mr-3 text-color-secondary">
 	<span class="text-white">{{ systemName }}</span>
 </div>
 <div class="flex p-0 m-0">
 	<main class="text-left m-auto surface-ground grid">
 		<div class="col max-w-30rem p-0">
-			<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="m-6 flex flex-wrap">
-				<h1 class="h3 mb-3 fw-normal text-light">This seat is waiting for you</h1>
+			<form (ngSubmit)="onSubmit()" class="m-6 flex flex-wrap" [formGroup]="client">
+				<h1 class="h3 mb-3 fw-normal text-light">The seat is waiting for you</h1>
 
 				<label for="domain" class="text-color">Your URL</label>
-				<div class="p-inputgroup mb-3">
-					<input type="text" pInputText name="domain" placeholder="awesomecompany" (keyup)="domainKeyUp($event)"
-						ngModel>
+				<div class="p-inputgroup">
+					<input type="text" pInputText placeholder="awesomecompany" formControlName="domain" required>
 					<span class="p-inputgroup-addon">.{{ cardinalDomain }}</span>
 					<span class="p-inputgroup-addon" id="checker" *ngIf="isSearching">
 						<i class="fa fa-fw fa-circle-notch fa-spin"></i>
 					</span>
-
 				</div>
+				<small class="w-full text-right text-red-500" *ngIf="domain?.invalid && (domain?.touched || domain?.dirty)">
+					<div *ngIf="domain?.errors?.['required']">URL is required.</div>
+					<div *ngIf="domain?.errors?.['minlength']">URL must be at least 3 characteres.</div>
+					<div *ngIf="domain?.errors?.['taken']">URL is not available, please choose another one.</div>
+				</small>
 
-				<label for="email">Your Email Address</label>
-				<input type="email" pInputText class="w-full mb-3" name="email" placeholder="name@example.com" ngModel>
+				<label for="email" class="w-full mt-3">Your Email Address</label>
+				<input type="email" pInputText class="w-full mb-3" placeholder="name@example.com" formControlName="email" required>
+				<small class="w-full text-right text-red-500" *ngIf="email?.invalid && (email?.touched || email?.dirty)">
+					<div *ngIf="email?.errors?.['required']">Email address is required.</div>
+					<div *ngIf="email?.errors?.['email']">Please enter a valid email address.</div>
+				</small>
 				<label for="password">Your Password</label>
-				<input type="password" pPassword class="w-full mb-3" name="password" placeholder="Password" ngModel>
+				<input type="password" pPassword class="w-full mb-3" placeholder="Password" formControlName="password" required>
+				<small class="w-full text-right text-red-500" *ngIf="password?.invalid && (password?.touched || password?.dirty)">
+					<div *ngIf="password?.errors?.['minlength']">Password has to be at least 8 characteres long.</div>
+				</small>
 
-				<button pButton type="submit" class="ml-auto bg-primary">
+				<br>
+				<button pButton type="submit" class="ml-auto bg-primary" [disabled]="client.invalid">
 					<!-- <fa-icon class="fa-fw" [icon]="faKey"></fa-icon> -->
 					<i class="fa-solid fa-key fa-fw mr-1"></i>
 					Sign up
