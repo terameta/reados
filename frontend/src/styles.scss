@@ -1,10 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
 
+:root {
+	--primary-color: #2e5090;
+}
+
 html,
 body {
 	font-family: 'Roboto Slab', serif;
 	font-size: 14px;
 	-webkit-font-smoothing: antialiased;
+	background-attachment: scroll;
+	background-clip: border-box;
+	background: url('./assets/background/image-bg.svg') no-repeat center center fixed;
+	background-origin: padding-box;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 0;
+	margin: 0;
+}
+
+// @media (min-width: 768px) {
+// 	body {
+// 		background-image: url('./assets/background/bg-1920x1175.jpg');
+// 	}
+// }
+
+// @media (min-width: 1921px) {
+// 	body {
+// 		background-image: url('./assets/background/bg-2400x1469.jpg');
+// 	}
+// }
+
+// @media (min-width: 2401px) {
+// 	body {
+// 		background-image: url('./assets/background/bg-3695x2263.jpg');
+// 	}
+// }
+
+.text-mono {
+	font-family: 'Roboto Mono', monospace;
 }
 
 .content-container {

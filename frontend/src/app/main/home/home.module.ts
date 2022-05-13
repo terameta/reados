@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ContainerComponent } from './container/container.component';
 import { ContentComponent } from './content/content.component';
+import { ButtonModule } from 'primeng/button';
 
 const routes: Routes = [
 	{
@@ -21,6 +22,6 @@ const routes: Routes = [
 		ContainerComponent,
 		ContentComponent,
 	],
-	imports: [CommonModule, RouterModule.forChild(routes)],
+	imports: [CommonModule, RouterModule.forChild(routes), ButtonModule],
 })
 export class HomeModule {}

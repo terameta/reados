@@ -13,5 +13,13 @@
 				Sign Up
 			</a>
 		</span>
+		<button type="button" pButton class="p-button-text text-white" (click)="coreDefinitionsService.toggleFullScreen()">
+			<!-- <fa-icon class="fa-fw" [icon]="faKey"></fa-icon> -->
+			<i class="fa-solid fa-fw" [ngClass]="coreDefinitionsService.isFullScreen?'fa-compress': 'fa-expand'"></i>
+		</button>
+		<!-- <button class="btn btn-xs ms-auto" (click)="coreDefinitionsService.toggleFullScreen()" tooltip="Toggle Zen Mode"
+			placement="auto">
+			<fa-icon [icon]="coreDefinitionsService.isFullScreen ? faCompress : faExpand" class="text-light"></fa-icon>
+		</button> -->
 	</div>
 </nav>

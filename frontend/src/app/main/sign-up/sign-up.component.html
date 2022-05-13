@@ -1,38 +1,38 @@
-<div class="bg-dark d-flex py-auto bg-primary" style="height: 100vh;">
-	<main class="form-signup text-center">
-		<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-			<img class="mb-4" src="/assets/logo/reados64.png" width="65" height="64" alt="Reados">
-			<h1 class="h3 mb-3 fw-normal text-light">First Step into the Wonders of {{ systemName }}</h1>
+<div style="padding: 4rem 12rem;" class="font-bold flex align-items-center no-underline text-3xl">
+	<img src="/assets/logo/reados32.png" alt="RL" class="mr-5 text-color-secondary">
+	<span class="text-white">{{ systemName }}</span>
+</div>
+<div class="flex p-0 m-0">
+	<main class="text-left m-auto surface-ground grid">
+		<div class="col max-w-30rem p-0">
+			<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="m-6 flex flex-wrap">
+				<h1 class="h3 mb-3 fw-normal text-light">Come, take your seat</h1>
 
-			<label for="domain" class="text-start form-label text-white w-100">Pick Your URL</label>
-			<div class="input-group mb-3">
-				<input type="text" class="form-control" name="domain" placeholder="awesomecompany" (keyup)="domainKeyUp($event)"
-					ngModel>
-				<span class="input-group-text" id="cardinal-domain">.{{ cardinalDomain }}</span>
-				<span class="input-group-text" id="checker" *ngIf="isSearching">
-					<!-- <fa-icon class="fa-fw" [icon]="faCircleNotch" [spin]="true"></fa-icon> -->
-				</span>
-			</div>
-			<hr>
-			<label for="domain" class="text-start form-label text-white w-100">Enter Your Credentials</label>
-			<div class="form-floating">
-				<input type="email" class="form-control" name="email" placeholder="name@example.com" ngModel>
-				<label for="email">Email address</label>
-			</div>
-			<div class="form-floating">
-				<input type="password" class="form-control" name="password" placeholder="Password" ngModel>
-				<label for="password">Password</label>
-			</div>
+				<label for="domain" class="text-color">Your URL</label>
+				<div class="p-inputgroup mb-3">
+					<input type="text" pInputText name="domain" placeholder="awesomecompany" (keyup)="domainKeyUp($event)"
+						ngModel>
+					<span class="p-inputgroup-addon">.{{ cardinalDomain }}</span>
+					<span class="p-inputgroup-addon" id="checker" *ngIf="isSearching">
+						<i class="fa fa-fw fa-circle-notch fa-spin"></i>
+					</span>
 
-
-			<div class="row">
-				<div class="col text-end">
-					<button class="btn btn-success" type="submit">
-						<!-- <fa-icon class="fa-fw" [icon]="faKey"></fa-icon> -->
-						Sign up
-					</button>
 				</div>
-			</div>
-		</form>
+
+				<label for="email">Your Email Address</label>
+				<input type="email" pInputText class="w-full mb-3" name="email" placeholder="name@example.com" ngModel>
+				<label for="password">Your Password</label>
+				<input type="password" pPassword class="w-full mb-3" name="password" placeholder="Password" ngModel>
+
+				<button pButton type="submit" class="ml-auto bg-primary">
+					<!-- <fa-icon class="fa-fw" [icon]="faKey"></fa-icon> -->
+					<i class="fa-solid fa-key fa-fw mr-1"></i>
+					Sign up
+				</button>
+			</form>
+		</div>
+		<div class="col max-w-30rem p-0 hidden md:block">
+			<img src="/assets/background/login-side.jpg" alt="Have fun with Reados" class="w-full h-full p-0 m-0">
+		</div>
 	</main>
 </div>

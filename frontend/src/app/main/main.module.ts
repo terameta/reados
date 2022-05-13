@@ -4,6 +4,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
 
 const routes: Routes = [
 	{
@@ -16,6 +19,13 @@ const routes: Routes = [
 
 @NgModule({
 	declarations: [SignInComponent, SignUpComponent],
-	imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),
+		FormsModule,
+		InputTextModule,
+		PasswordModule,
+		ButtonModule,
+	],
 })
 export class MainModule {}
