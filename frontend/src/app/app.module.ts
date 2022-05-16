@@ -9,6 +9,7 @@ import { MainInterceptorInterceptor } from './core/main-interceptor.interceptor'
 import { WINDOW_PROVIDERS } from './core/window.providers';
 import { RippleModule } from 'primeng/ripple';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule( {
 	declarations: [ AppComponent ],
@@ -19,6 +20,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 		HttpClientModule,
 		JwtModule.forRoot( { config: { tokenGetter: () => localStorage.getItem( 'token' ) } } ),
 		RippleModule,
+		ToastModule,
 	],
 	providers: [
 		{

@@ -5,7 +5,7 @@
 <div class="flex p-0 m-0">
 	<main class="text-left m-auto surface-ground grid">
 		<div class="col max-w-30rem p-0">
-			<form (ngSubmit)="onSubmit()" class="m-6 flex flex-wrap" [formGroup]="client">
+			<form (ngSubmit)="onSubmit()" class="m-6 flex flex-wrap" [formGroup]="customer">
 				<h1 class="h3 mb-3 fw-normal text-light w-full">Come on in, we are open</h1>
 
 				<!-- <label for="domain" class="text-color">Your URL</label>
@@ -45,7 +45,7 @@
 				</small>
 
 				<br>
-				<button pButton type="submit" class="ml-auto bg-primary mt-3" [disabled]="client.invalid">
+				<button pButton type="submit" class="ml-auto bg-primary mt-3" [disabled]="customer.invalid || isSubmitting">
 					<!-- <fa-icon class="fa-fw" [icon]="faKey"></fa-icon> -->
 					<i class="fa-solid fa-key fa-fw mr-1"></i>
 					Sign up

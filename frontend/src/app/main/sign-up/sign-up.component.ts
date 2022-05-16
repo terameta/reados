@@ -11,10 +11,11 @@ import isStrongPassword from 'validator/lib/isStrongPassword';
 	styleUrls: [ './sign-up.component.scss' ],
 } )
 export class SignUpComponent implements OnInit {
-	public cardinalDomain = globalSettings.cardinalDomain;
+
 	public systemName = globalSettings.systemName;
 
 	public isPasswordClear = false;
+	public isSubmitting = false;
 
 	private createPasswordStrengthValidator = (): ValidatorFn => {
 		return ( control: AbstractControl ): ValidationErrors | null => {
@@ -36,32 +37,32 @@ export class SignUpComponent implements OnInit {
 		}
 	}
 
-	public client: FormGroup = new FormGroup( {
+	public customer: FormGroup = new FormGroup( {
 		email: new FormControl( '', [ Validators.required, Validators.email ] ),
 		password: new FormControl( '', [ Validators.required, Validators.minLength( 8 ), this.createPasswordStrengthValidator() ] ),
 	} );
 
-	get domain () { return this.client.get( 'domain' ); }
-	get email () { return this.client.get( 'email' ); }
-	get password () { return this.client.get( 'password' ); }
+	get email () { return this.customer.get( 'email' ); }
+	get password () { return this.customer.get( 'password' ); }
 
 	constructor( private httpClient: HttpClient ) { }
 
 	ngOnInit (): void { }
 
-	public onSubmit = async (/*form: NgForm*/ ): Promise<void> => {
-		// this.httpClient.post('/func-client-sign-up', form.value).subscribe({
-		// 	next: (data) => {
-		// 		console.log('Next', data);
-		// 	},
-		// 	error: (error) => {
-		// 		console.log(error);
-		// 		console.log(error.error);
-		// 	},
-		// 	complete: () => {
-		// 		console.log('Complete');
-		// 	},
-		// });
+	public onSubmit = async (): Promise<void> => {
+		this.isSubmitting = true;
+		this.httpClient.post( '/func-customer-sign-up', this.customer.value ).subscribe( {
+			next: ( data ) => {
+				console.log( 'Next', data );
+			},
+			error: ( error ) => {
+				console.log( error );
+				console.log( error.error );
+			},
+			complete: () => {
+				this.isSubmitting = false;
+			},
+		} );
 	};
 
 }

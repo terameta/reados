@@ -9,6 +9,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { AutoFocusModule } from '../directives/auto-focus/auto-focus.module';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { ToastModule } from 'primeng/toast';
 
 const routes: Routes = [
 	{
@@ -30,6 +31,7 @@ const routes: Routes = [
 		ButtonModule,
 		AutoFocusModule,
 		KeyFilterModule,
+		ToastModule,
 	],
 } )
 export class MainModule { }
