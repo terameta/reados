@@ -7,14 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainInterceptorInterceptor } from './core/main-interceptor.interceptor';
 import { WINDOW_PROVIDERS } from './core/window.providers';
+import { RippleModule } from 'primeng/ripple';
+import { JwtModule } from '@auth0/angular-jwt';
 
-@NgModule({
-	declarations: [AppComponent],
+@NgModule( {
+	declarations: [ AppComponent ],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
+		JwtModule.forRoot( { config: { tokenGetter: () => localStorage.getItem( 'token' ) } } ),
+		RippleModule,
 	],
 	providers: [
 		{
@@ -24,6 +28,6 @@ import { WINDOW_PROVIDERS } from './core/window.providers';
 		},
 		WINDOW_PROVIDERS,
 	],
-	bootstrap: [AppComponent],
-})
-export class AppModule {}
+	bootstrap: [ AppComponent ],
+} )
+export class AppModule { }

@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { globalSettings } from '@globals/settings';
 import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
+import isStrongPassword from 'validator/lib/isStrongPassword';
 
 @Component( {
 	selector: 'app-sign-up',
@@ -13,13 +14,31 @@ export class SignUpComponent implements OnInit {
 	public cardinalDomain = globalSettings.cardinalDomain;
 	public systemName = globalSettings.systemName;
 
-	public isSearching = false;
+	public isPasswordClear = false;
 
+	private createPasswordStrengthValidator = (): ValidatorFn => {
+		return ( control: AbstractControl ): ValidationErrors | null => {
+
+			const value = control.value;
+
+			if ( !value ) {
+				return null;
+			}
+
+			return isStrongPassword( value, {
+				minLength: 8,
+				minLowercase: 1,
+				minUppercase: 1,
+				minNumbers: 1,
+				minSymbols: 1,
+			} ) ? null : { weakPassword: true };
+
+		}
+	}
 
 	public client: FormGroup = new FormGroup( {
-		domain: new FormControl( '', [ Validators.required, Validators.minLength( 3 ) ] ),
 		email: new FormControl( '', [ Validators.required, Validators.email ] ),
-		password: new FormControl( '', [ Validators.required, Validators.minLength( 8 ) ] ),
+		password: new FormControl( '', [ Validators.required, Validators.minLength( 8 ), this.createPasswordStrengthValidator() ] ),
 	} );
 
 	get domain () { return this.client.get( 'domain' ); }
@@ -28,29 +47,7 @@ export class SignUpComponent implements OnInit {
 
 	constructor( private httpClient: HttpClient ) { }
 
-	ngOnInit (): void {
-		this.client.controls[ 'domain' ].valueChanges.
-			pipe(
-				filter( ( value: string ) => value.length > 2 ),
-				distinctUntilChanged(),
-				tap( () => {
-					this.isSearching = true;
-				} ),
-				debounceTime( 1000 ),
-				switchMap( ( domain ) =>
-					this.httpClient.post( '/func-client-check-domain', { domain } )
-				)
-			).
-			subscribe( ( result: any ) => {
-				console.log( result );
-				this.isSearching = false;
-				if ( result.result !== 'available' ) {
-					this.client.controls[ 'domain' ].setErrors( { ...this.client.controls[ 'domain' ].errors, taken: true } );
-				} else {
-					this.client.controls[ 'domain' ].setErrors( null );
-				}
-			} );
-	}
+	ngOnInit (): void { }
 
 	public onSubmit = async (/*form: NgForm*/ ): Promise<void> => {
 		// this.httpClient.post('/func-client-sign-up', form.value).subscribe({
@@ -66,4 +63,5 @@ export class SignUpComponent implements OnInit {
 		// 	},
 		// });
 	};
+
 }

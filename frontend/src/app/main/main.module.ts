@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { AutoFocusModule } from '../directives/auto-focus/auto-focus.module';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 const routes: Routes = [
 	{
@@ -26,6 +28,8 @@ const routes: Routes = [
 		InputTextModule,
 		PasswordModule,
 		ButtonModule,
+		AutoFocusModule,
+		KeyFilterModule,
 	],
 } )
 export class MainModule { }
