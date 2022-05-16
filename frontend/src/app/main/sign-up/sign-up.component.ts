@@ -4,6 +4,8 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { globalSettings } from '@globals/settings';
 import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
 import isStrongPassword from 'validator/lib/isStrongPassword';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component( {
 	selector: 'app-sign-up',
@@ -45,24 +47,18 @@ export class SignUpComponent implements OnInit {
 	get email () { return this.customer.get( 'email' ); }
 	get password () { return this.customer.get( 'password' ); }
 
-	constructor( private httpClient: HttpClient ) { }
+	constructor( private httpClient: HttpClient, private router: Router, private authService: AuthService ) { }
 
-	ngOnInit (): void { }
+	ngOnInit (): void {
+		if ( this.authService.isAuthenticated ) {
+			this.router.navigate( [ '/' ] );
+		}
+	}
 
 	public onSubmit = async (): Promise<void> => {
 		this.isSubmitting = true;
-		this.httpClient.post( '/func-customer-sign-up', this.customer.value ).subscribe( {
-			next: ( data ) => {
-				console.log( 'Next', data );
-			},
-			error: ( error ) => {
-				console.log( error );
-				console.log( error.error );
-			},
-			complete: () => {
-				this.isSubmitting = false;
-			},
-		} );
+		await this.authService.signUp( this.customer.value.email, this.customer.value.password );
+		this.isSubmitting = false;
 	};
 
 }

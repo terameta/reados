@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { globalSettings } from '@globals/settings';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component( {
 	selector: 'app-sign-in',
@@ -24,24 +26,17 @@ export class SignInComponent implements OnInit {
 	get email () { return this.customer.get( 'email' ); }
 	get password () { return this.customer.get( 'password' ); }
 
-	constructor( private httpClient: HttpClient, private messageService: MessageService ) { }
+	constructor( private httpClient: HttpClient, private messageService: MessageService, private authService: AuthService, private router: Router ) { }
 
-	ngOnInit (): void { }
+	ngOnInit (): void {
+		if ( this.authService.isAuthenticated ) {
+			this.router.navigate( [ '/' ] );
+		}
+	}
 
 	public onSubmit = async (): Promise<void> => {
 		this.isSubmitting = true;
-		this.httpClient.post( '/func-customer-sign-in', this.customer.value ).subscribe( {
-			next: ( data ) => {
-				console.log( 'Next', data );
-				this.isSubmitting = false;
-			},
-			error: ( error ) => {
-				console.log( error );
-				console.log( error.error );
-				this.isSubmitting = false;
-				const detail = error.error?.message || [ 'Server error, please try again later' ];
-				this.messageService.add( { severity: 'error', summary: 'Authentication failed', detail, key: 'center', sticky: true } );
-			},
-		} );
+		await this.authService.signIn( this.customer.value.email, this.customer.value.password );
+		this.isSubmitting = false;
 	};
 }

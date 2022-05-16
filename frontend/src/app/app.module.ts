@@ -10,6 +10,7 @@ import { WINDOW_PROVIDERS } from './core/window.providers';
 import { RippleModule } from 'primeng/ripple';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule( {
 	declarations: [ AppComponent ],
@@ -29,6 +30,7 @@ import { ToastModule } from 'primeng/toast';
 			multi: true,
 		},
 		WINDOW_PROVIDERS,
+		MessageService,
 	],
 	bootstrap: [ AppComponent ],
 } )
