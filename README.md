@@ -9,6 +9,7 @@ I prefer to go for PostgreSQL for the database layer.
 ## Imagined Roadmap
 
 - [ ] Customer Service Module
+- [ ] Calendar Management Module
 - [ ] Sales Module
 - [ ] HRM Module
 - [ ] Dashboard/BI Module
