@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { AutoFocusModule } from '../directives/auto-focus/auto-focus.module';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ToastModule } from 'primeng/toast';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
 	{
@@ -32,6 +33,7 @@ const routes: Routes = [
 		AutoFocusModule,
 		KeyFilterModule,
 		ToastModule,
+		FontAwesomeModule,
 	],
 } )
 export class MainModule { }

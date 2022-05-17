@@ -1,25 +1,29 @@
-<nav class="fixed top-0 left-0 w-full font-bold shadow-2 bg-surface">
+<nav class="fixed top-0 left-0 w-full font-bold shadow-2 surface-ground">
 	<div class="flex align-items-center py-2 px-3">
 		<a class="font-bold flex align-items-center no-underline text-3xl" routerLink="/">
 			<img src="/assets/logo/reados24.png" alt="RL" class="mr-3 text-color-secondary">
 			<span class="text-color">READOS</span>
 		</a>
 		<span class="ml-auto">
-			<a class="no-underline text-color mr-3" routerLink="sign-in"
-				routerLinkActive="border-bottom border-3 border-white">
-				Sign In
-			</a>
-			<a class="text-color no-underline" routerLink="sign-up" routerLinkActive="border-bottom border-3 border-white">
-				Sign Up
-			</a>
+			<ng-container *ngIf="!(authService.isAuthenticated$ | async)">
+				<a class="no-underline text-color mr-3" routerLink="sign-in" routerLinkActive="border-bottom border-3 border-white">
+					Sign In
+				</a>
+				<a class="text-color no-underline" routerLink="sign-up" routerLinkActive="border-bottom border-3 border-white">
+					Sign Up
+				</a>
+			</ng-container>
+			<ng-container *ngIf="authService.isAuthenticated$ | async">
+				<a class="no-underline text-color mr-3" routerLink="profile" routerLinkActive="border-bottom border-3 border-white">
+					Profile
+				</a>
+				<a class="text-color no-underline pointer" (click)="authService.signOut()">
+					Sign Out
+				</a>
+			</ng-container>
 		</span>
-		<button type="button" pButton class="p-button-text text-white" (click)="coreDefinitionsService.toggleFullScreen()">
-			<!-- <fa-icon class="fa-fw" [icon]="faKey"></fa-icon> -->
-			<i class="fa-solid fa-fw" [ngClass]="coreDefinitionsService.isFullScreen?'fa-compress': 'fa-expand'"></i>
+		<button type="button" pButton class="p-button-text text-color" (click)="coreDefinitionsService.toggleFullScreen()">
+			<fa-icon [icon]="coreDefinitionsService.isFullScreen ? faCompress : faExpand" [fixedWidth]="true"></fa-icon>
 		</button>
-		<!-- <button class="btn btn-xs ms-auto" (click)="coreDefinitionsService.toggleFullScreen()" tooltip="Toggle Zen Mode"
-			placement="auto">
-			<fa-icon [icon]="coreDefinitionsService.isFullScreen ? faCompress : faExpand" class="text-light"></fa-icon>
-		</button> -->
 	</div>
 </nav>

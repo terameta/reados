@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { globalSettings } from '@globals/settings';
 import { filter, takeWhile } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/auth.service';
+import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component( {
 	selector: 'app-sign-in',
@@ -11,6 +12,10 @@ import { AuthService } from 'src/app/core/auth.service';
 	styleUrls: [ './sign-in.component.scss' ],
 } )
 export class SignInComponent implements OnInit {
+
+	public faEye = faEye;
+	public faEyeSlash = faEyeSlash;
+	public faKey = faKey;
 
 	public systemName = globalSettings.systemName;
 

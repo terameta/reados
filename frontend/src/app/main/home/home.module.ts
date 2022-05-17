@@ -6,22 +6,23 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ContainerComponent } from './container/container.component';
 import { ContentComponent } from './content/content.component';
 import { ButtonModule } from 'primeng/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: HomeComponent,
-		children: [{ path: '', component: ContentComponent }],
+		children: [ { path: '', component: ContentComponent } ],
 	},
 ];
 
-@NgModule({
+@NgModule( {
 	declarations: [
 		HomeComponent,
 		NavBarComponent,
 		ContainerComponent,
 		ContentComponent,
 	],
-	imports: [CommonModule, RouterModule.forChild(routes), ButtonModule],
-})
-export class HomeModule {}
+	imports: [ CommonModule, RouterModule.forChild( routes ), ButtonModule, FontAwesomeModule ],
+} )
+export class HomeModule { }

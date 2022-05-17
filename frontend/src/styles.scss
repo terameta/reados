@@ -11,7 +11,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	background-attachment: scroll;
 	background-clip: border-box;
-	background: url('./assets/background/image-bg.svg') no-repeat center center fixed;
+	// background: url('./assets/background/image-bg.svg') no-repeat center center fixed;
 	background-origin: padding-box;
 	background-position-x: 0%;
 	background-position-y: 0%;
@@ -20,24 +20,6 @@ body {
 	padding: 0;
 	margin: 0;
 }
-
-// @media (min-width: 768px) {
-// 	body {
-// 		background-image: url('./assets/background/bg-1920x1175.jpg');
-// 	}
-// }
-
-// @media (min-width: 1921px) {
-// 	body {
-// 		background-image: url('./assets/background/bg-2400x1469.jpg');
-// 	}
-// }
-
-// @media (min-width: 2401px) {
-// 	body {
-// 		background-image: url('./assets/background/bg-3695x2263.jpg');
-// 	}
-// }
 
 .text-mono {
 	font-family: 'Roboto Mono', monospace;
@@ -64,4 +46,8 @@ body {
 
 .ui-confirmdialog-message {
 	white-space: pre-line;
+}
+
+.pointer {
+	cursor: pointer;
 }

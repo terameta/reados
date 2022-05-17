@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { globalSettings } from '@globals/settings';
 import { filter, takeWhile } from 'rxjs/operators';
-import isStrongPassword from 'validator/lib/isStrongPassword';
+import isStrongPassword from 'validator/es/lib/isStrongPassword';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
+import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component( {
 	selector: 'app-sign-up',
@@ -12,6 +13,10 @@ import { AuthService } from 'src/app/core/auth.service';
 	styleUrls: [ './sign-up.component.scss' ],
 } )
 export class SignUpComponent implements OnInit {
+
+	public faEye = faEye;
+	public faEyeSlash = faEyeSlash;
+	public faKey = faKey;
 
 	public systemName = globalSettings.systemName;
 

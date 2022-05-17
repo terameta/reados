@@ -97,6 +97,24 @@ export class AuthService {
 	public signOut = async () => {
 		await this.storageService.delete( 'token' );
 		this.isAuthenticated$.next( false );
-		this.router.navigate( [ '/sign-in' ] );
+		this.session$.next( null );
+
+		await this.waitNavigated();
+
+		if ( this.router.url !== '/sign-up' )
+			this.router.navigate( [ '/sign-in' ] );
+
 	};
+
+	private waitNavigated = () => {
+		return new Promise<void>( ( resolve ) => {
+			setTimeout( () => {
+				if ( this.router.navigated ) {
+					resolve();
+				} else {
+					this.waitNavigated().then( resolve );
+				}
+			}, 33 );
+		} );
+	}
 }
