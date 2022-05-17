@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { globalSettings } from '@globals/settings';
-import { MessageService } from 'primeng/api';
+import { filter, takeWhile } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/auth.service';
 
 @Component( {
@@ -26,12 +25,19 @@ export class SignInComponent implements OnInit {
 	get email () { return this.customer.get( 'email' ); }
 	get password () { return this.customer.get( 'password' ); }
 
-	constructor( private httpClient: HttpClient, private messageService: MessageService, private authService: AuthService, private router: Router ) { }
+	constructor( private authService: AuthService, private router: Router ) { }
 
 	ngOnInit (): void {
-		if ( this.authService.isAuthenticated ) {
-			this.router.navigate( [ '/' ] );
-		}
+		this.authService.isAuthenticated$.
+			pipe(
+				takeWhile( ( isAuthenticated ) => isAuthenticated !== false ),
+				filter( ( isAuthenticated ) => isAuthenticated === true ),
+			).
+			subscribe( {
+				next: () => {
+					this.router.navigate( [ '/' ] );
+				}
+			} );
 	}
 
 	public onSubmit = async (): Promise<void> => {

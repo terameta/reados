@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { globalSettings } from '@globals/settings';
-import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
+import { filter, takeWhile } from 'rxjs/operators';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
@@ -47,12 +46,19 @@ export class SignUpComponent implements OnInit {
 	get email () { return this.customer.get( 'email' ); }
 	get password () { return this.customer.get( 'password' ); }
 
-	constructor( private httpClient: HttpClient, private router: Router, private authService: AuthService ) { }
+	constructor( private router: Router, private authService: AuthService ) { }
 
 	ngOnInit (): void {
-		if ( this.authService.isAuthenticated ) {
-			this.router.navigate( [ '/' ] );
-		}
+		this.authService.isAuthenticated$.
+			pipe(
+				takeWhile( ( isAuthenticated ) => isAuthenticated !== false ),
+				filter( ( isAuthenticated ) => isAuthenticated === true ),
+			).
+			subscribe( {
+				next: () => {
+					this.router.navigate( [ '/' ] );
+				}
+			} );
 	}
 
 	public onSubmit = async (): Promise<void> => {

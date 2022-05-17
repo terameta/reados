@@ -19,7 +19,7 @@ export type AuthSession = {
 export class AuthService {
 
 	public session$ = new BehaviorSubject<AuthSession | null>( null );
-	public isAuthenticated = false;
+	public isAuthenticated$ = new BehaviorSubject<boolean | null>( null );
 
 	private jwtHelper = new JwtHelperService();
 
@@ -44,7 +44,7 @@ export class AuthService {
 							token: encodedToken,
 						};
 						this.session$.next( session );
-						this.isAuthenticated = true;
+						this.isAuthenticated$.next( true );
 					} else {
 						this.signOut();
 					}
@@ -96,7 +96,7 @@ export class AuthService {
 
 	public signOut = async () => {
 		await this.storageService.delete( 'token' );
-		this.isAuthenticated = false;
+		this.isAuthenticated$.next( false );
 		this.router.navigate( [ '/sign-in' ] );
 	};
 }
