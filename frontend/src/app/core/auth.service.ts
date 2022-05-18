@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { HttpClient } from '@angular/common/http';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MessageService } from 'primeng/api';
@@ -11,6 +11,7 @@ export type AuthSession = {
 	user: {
 		id: string,
 		email: string,
+		type: 'customer' | 'admin',
 		displayName: string,
 	},
 	token: string,
@@ -26,25 +27,27 @@ export class AuthService {
 	constructor( private storageService: StorageService, private httpClient: HttpClient, private messageService: MessageService, private router: Router ) {
 		this.storageService.storage$.
 			pipe(
+				filter( ( storage ) => storage !== null ),
 				map( ( values: any ) => {
 					return values.token;
 				} ),
 				distinctUntilChanged(),
 			).
 			subscribe( {
-				next: ( encodedToken ) => {
+				next: async ( encodedToken ) => {
 					if ( encodedToken ) {
-						const token = this.jwtHelper.decodeToken( encodedToken );
+						const user = this.jwtHelper.decodeToken( encodedToken );
+
 						const session = {
-							user: {
-								id: token.id,
-								email: token.email,
-								displayName: token.displayName || token.email,
-							},
+							user,
 							token: encodedToken,
 						};
 						this.session$.next( session );
 						this.isAuthenticated$.next( true );
+						await this.waitNavigated();
+						if ( this.router.url === '/' && user.type === 'admin' ) {
+							this.router.navigate( [ '/admin' ] );
+						}
 					} else {
 						this.signOut();
 					}
@@ -94,15 +97,18 @@ export class AuthService {
 		} );
 	}
 
-	public signOut = async () => {
+	public signOut = async ( withRedirect = true ) => {
 		await this.storageService.delete( 'token' );
 		this.isAuthenticated$.next( false );
 		this.session$.next( null );
 
-		await this.waitNavigated();
+		if ( withRedirect ) {
 
-		if ( this.router.url !== '/sign-up' && this.router.url !== '/' ) {
-			this.router.navigate( [ '/sign-in' ] );
+			await this.waitNavigated();
+
+			if ( this.router.url !== '/sign-up' && this.router.url !== '/' ) {
+				this.router.navigate( [ '/sign-in' ] );
+			}
 		}
 
 	};

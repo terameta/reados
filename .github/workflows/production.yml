@@ -40,7 +40,7 @@ jobs:
           npm i -g azure-functions-core-tools@4 --unsafe-perm true
           func azure functionapp fetch-app-settings readosfu
           mv package.json package.json.original
-          cat package.json.original | grep -i -v -E '@angular|primeng|primeflex|primeicons|jasmine|karma|rxjs|concurrently"|angular-jwt' > package.json
+          cat package.json.original | grep -i -v -E '@angular|primeng|@fortawesome|primeflex|primeicons|jasmine|karma|rxjs|concurrently"|angular-jwt' > package.json
           npm run deploy
       - name: Build Frontend
         run: |

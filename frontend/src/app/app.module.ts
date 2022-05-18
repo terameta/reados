@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,12 +9,18 @@ import { RippleModule } from 'primeng/ripple';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { RouterModule, Routes } from '@angular/router';
+
+
+const routes: Routes = [
+	{ path: '', loadChildren: () => import( './main/main.module' ).then( ( m ) => m.MainModule ), },
+];
 
 @NgModule( {
 	declarations: [ AppComponent ],
 	imports: [
 		BrowserModule,
-		AppRoutingModule,
+		RouterModule.forRoot( routes ),
 		BrowserAnimationsModule,
 		HttpClientModule,
 		JwtModule.forRoot( { config: { tokenGetter: () => localStorage.getItem( 'token' ) } } ),

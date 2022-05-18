@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInComponent } from './sign-in.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -11,18 +11,26 @@ import { AutoFocusModule } from '../directives/auto-focus/auto-focus.module';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ToastModule } from 'primeng/toast';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ContainerComponent } from './container.component';
+import { NavBarComponent } from './nav-bar.component';
 
 const routes: Routes = [
 	{
-		path: '',
-		loadChildren: () => import( './home/home.module' ).then( ( m ) => m.HomeModule ),
+		path: '', component: ContainerComponent, children: [
+			{ path: 'admin', loadChildren: () => import( './admin/admin.module' ).then( m => m.AdminModule ) },
+		]
 	},
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'sign-up', component: SignUpComponent },
 ];
 
 @NgModule( {
-	declarations: [ SignInComponent, SignUpComponent ],
+	declarations: [
+		ContainerComponent,
+		NavBarComponent,
+		SignInComponent,
+		SignUpComponent
+	],
 	imports: [
 		CommonModule,
 		RouterModule.forChild( routes ),

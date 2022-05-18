@@ -8,9 +8,9 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 
 declare const require: {
-  context(path: string, deep?: boolean, filter?: RegExp): {
-    <T>(id: string): T;
-    keys(): string[];
+  context ( path: string, deep?: boolean, filter?: RegExp ): {
+    <T> ( id: string ): T;
+    keys (): string[];
   };
 };
 
@@ -21,6 +21,7 @@ getTestBed().initTestEnvironment(
 );
 
 // Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
+const context = require.context( './', true, /\.spec\.ts$/ );
 // And load the modules.
-context.keys().map(context);
+// file deepcode ignore PureMethodReturnValueIgnored/test: <please specify a reason of ignoring this>
+context.keys().map( context );

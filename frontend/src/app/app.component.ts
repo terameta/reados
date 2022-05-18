@@ -3,8 +3,12 @@ import { PrimeNGConfig } from 'primeng/api';
 import { AuthService } from './core/auth.service';
 @Component( {
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: [ './app.component.scss' ],
+	template: `
+		<p-toast key="main"></p-toast>
+		<p-toast key="center" position="center"></p-toast>
+		<router-outlet></router-outlet>
+	`,
+	styles: [ `` ],
 } )
 export class AppComponent {
 	title = 'reados';

@@ -7,8 +7,10 @@ EXECUTE checkPrimaryKey('user');
 EXECUTE ensureTextFieldinTable('user', 'email');
 EXECUTE ensureTextFieldinTable('user', 'password');
 EXECUTE ensureTextFieldinTable('user', 'type');
+EXECUTE ensureBooleanFieldinTable('user', 'isPrimaryAdmin', true, false);
 EXECUTE ensureTimeStampZFieldinTable('user', 'createdAt');
 ALTER TABLE IF EXISTS public."user" ALTER COLUMN "createdAt" SET DEFAULT now();
+ALTER TABLE IF EXISTS public."user" ALTER COLUMN "isPrimaryAdmin" SET DEFAULT false;
 
 CREATE UNIQUE INDEX IF NOT EXISTS user_email_unique
     ON public."user" USING btree

@@ -32,7 +32,7 @@ const httpTrigger: AzureFunction = async function ( context: Context, req: HttpR
 
     let token: string = '';
     if ( validationResult.isValid && process.env.JWT_SECRET ) {
-        token = sign( { id: user.id, email }, process.env.JWT_SECRET, { expiresIn: '365d' } );
+        token = sign( { id: user.id, email, type: user.type, isPrimaryAdmin: user.isPrimaryAdmin }, process.env.JWT_SECRET, { expiresIn: '365d' } );
     }
 
     context.res = validationResult.isValid
