@@ -39,7 +39,7 @@ const httpTrigger: AzureFunction = async function ( context: Context, req: HttpR
 
     context.res = validationResult.isValid
         ? { status: 200, body: { token } }
-        : { status: 400, body: validationResult.errors };
+        : { status: 400, body: { message: validationResult.errors.join( '\n' ) } };
 
 };
 

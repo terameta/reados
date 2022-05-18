@@ -60,6 +60,7 @@ export class AuthService {
 					resolve();
 				},
 				error: ( error ) => {
+					console.log( error );
 					const detail = error.error?.message || 'Server error, please try again later';
 					this.messageService.add( { severity: 'error', summary: 'Authentication failed', detail, key: 'center', sticky: true } );
 					resolve();

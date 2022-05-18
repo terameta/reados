@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
-@Component({
+@Component( {
   selector: 'app-users',
   template: `
-    <p>
-      users works!
-    </p>
+    <pre>{{ usersService.users$ | async | json }}</pre>
   `,
   styles: [
   ]
-})
+} )
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  constructor( public usersService: UsersService ) { }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   }
 
 }
