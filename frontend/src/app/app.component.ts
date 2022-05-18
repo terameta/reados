@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { AuthService } from './core/auth.service';
+import { AuthService } from './services/auth.service';
 @Component( {
 	selector: 'app-root',
 	template: `

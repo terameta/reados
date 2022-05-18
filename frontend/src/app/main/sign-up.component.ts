@@ -4,7 +4,7 @@ import { globalSettings } from '@globals/settings';
 import { filter, takeWhile } from 'rxjs/operators';
 import isStrongPassword from 'validator/es/lib/isStrongPassword';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component( {
@@ -49,7 +49,7 @@ import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
 						</form>
 					</div>
 					<div class="col max-w-30rem p-0 hidden md:block">
-						<img src="/assets/background/login-side.jpg" alt="Come in, we are open" class="w-full h-full p-0 m-0">
+						<img src="/assets/background/login-side.jpg" alt="Come in, we are open" class="w-full h-full p-0 m-0" width="640" height="943">
 					</div>
 				</main>
 			</div>

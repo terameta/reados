@@ -5,7 +5,18 @@
 		"outDir": "dist",
 		"rootDir": ".",
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"paths": {
+			"@globals/*": [
+				"./globals/*"
+			],
+			"@utilities/*": [
+				"./utilities/*"
+			],
+			"@typedefs/*": [
+				"./types/*"
+			]
+		}
 	},
 	"exclude": [
 		"frontend",

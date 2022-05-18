@@ -6,16 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { AuthSession } from '@typedefs/auth-session';
 
-export type AuthSession = {
-	user: {
-		id: string,
-		email: string,
-		type: 'customer' | 'admin',
-		displayName: string,
-	},
-	token: string,
-}
 @Injectable( { providedIn: 'root' } )
 export class AuthService {
 
