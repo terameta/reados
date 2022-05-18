@@ -8,42 +8,43 @@ const httpTrigger: AzureFunction = async (
 	req: HttpRequest
 ): Promise<void> => {
 	const { email, password } = req.body;
-	const validationResult = await validateCredentials({ email, password });
+	const validationResult = await validateCredentials( { email, password } );
 
 	let userId = '';
 
-	if (validationResult.isValid) {
+	if ( validationResult.isValid ) {
 		const db = await getDB();
 
 		const { rowCount } = await db.query(
 			'SELECT * FROM public.user WHERE email = $1',
-			[email.toLowerCase()]
+			// file deepcode ignore HTTPSourceWithUncheckedType: We are checking the type of the email variable at validateCredentials function already.
+			[ email.toLowerCase() ]
 		);
-		if (rowCount > 0) {
+		if ( rowCount > 0 ) {
 			validationResult.isValid = false;
-			validationResult.errors.push('Email is already in use.');
+			validationResult.errors.push( 'Email is already in use.' );
 		}
 
-		if (validationResult.isValid) {
+		if ( validationResult.isValid ) {
 			try {
-				await db.query('BEGIN');
+				await db.query( 'BEGIN' );
 
 				const cResult = await db.query(
 					'INSERT INTO public."client" ("name") VALUES ($1) RETURNING id',
-					['']
+					[ '' ]
 				);
-				const clientId = cResult.rows[0].id;
+				const clientId = cResult.rows[ 0 ].id;
 
 				const uResult = await db.query(
 					'INSERT INTO public."user" ("email", "password", "client") VALUES ($1, $2, $3) RETURNING id',
-					[email.toLowerCase(), password, clientId]
+					[ email.toLowerCase(), password, clientId ]
 				);
 
-				await db.query('COMMIT');
+				await db.query( 'COMMIT' );
 
-				const userId = uResult.rows[0].id;
-			} catch (error) {
-				await db.query('ROLLBACK');
+				const userId = uResult.rows[ 0 ].id;
+			} catch ( error ) {
+				await db.query( 'ROLLBACK' );
 				throw error;
 			} finally {
 				await db.end();
@@ -54,10 +55,10 @@ const httpTrigger: AzureFunction = async (
 	}
 
 	let token: string = '';
-	if (validationResult.isValid && process.env.JWT_SECRET) {
-		token = sign({ id: userId, email }, process.env.JWT_SECRET, {
+	if ( validationResult.isValid && process.env.JWT_SECRET ) {
+		token = sign( { id: userId, email }, process.env.JWT_SECRET, {
 			expiresIn: '365d',
-		});
+		} );
 	}
 
 	context.res = validationResult.isValid

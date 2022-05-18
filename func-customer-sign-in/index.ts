@@ -17,6 +17,7 @@ const httpTrigger: AzureFunction = async function ( context: Context, req: HttpR
         const db = await getDB();
 
         const uQuery = 'SELECT * FROM public.user WHERE email = $1';
+        // file deepcode ignore HTTPSourceWithUncheckedType: We are checking the type of the email variable at validateCredentials function already.
         const { rows: uRows, rowCount } = await db.query( uQuery, [ email.toLowerCase() ] );
 
         if ( rowCount === 0 ) {

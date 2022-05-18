@@ -16,6 +16,7 @@ const httpTrigger: AzureFunction = async function ( context: Context, req: HttpR
         const db = await getDB();
 
         const cQuery = 'SELECT * FROM public.user WHERE email = $1';
+        // file deepcode ignore HTTPSourceWithUncheckedType: We are checking the type of the email variable at validateCredentials function already.
         const { rowCount } = await db.query( cQuery, [ email.toLowerCase() ] );
         if ( rowCount > 0 ) { validationResult.isValid = false; validationResult.errors.push( 'Email is already in use.' ); }
 

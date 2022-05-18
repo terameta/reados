@@ -101,8 +101,9 @@ export class AuthService {
 
 		await this.waitNavigated();
 
-		if ( this.router.url !== '/sign-up' )
+		if ( this.router.url !== '/sign-up' && this.router.url !== '/' ) {
 			this.router.navigate( [ '/sign-in' ] );
+		}
 
 	};
 
@@ -112,6 +113,7 @@ export class AuthService {
 				if ( this.router.navigated ) {
 					resolve();
 				} else {
+					// file deepcode ignore PromiseNotCaughtGeneral: This is a type of function that only resolves, never throws. Therefore no need to catch
 					this.waitNavigated().then( resolve );
 				}
 			}, 33 );

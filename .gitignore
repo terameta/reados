@@ -251,3 +251,5 @@ __azurite_db*__.json
 
 # Others
 .dccache
+cypress/screenshots/*
+cypress/videos/*
