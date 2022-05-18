@@ -6,7 +6,6 @@ import { AuthService } from '../core/auth.service';
   template: `
     <app-nav-bar></app-nav-bar>
     <div class="content-container">
-      <pre>{{ authService.session$ | async | json }}</pre>
       <router-outlet></router-outlet>
     </div>
   `,

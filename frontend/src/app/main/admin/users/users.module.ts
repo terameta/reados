@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminHomeComponent } from './admin-home.component';
+import { UsersComponent } from './users.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: AdminHomeComponent },
-  { path: 'users', loadChildren: () => import( './users/users.module' ).then( m => m.UsersModule ) },
+  { path: '', component: UsersComponent },
 ];
 
 @NgModule( {
   declarations: [
-    AdminHomeComponent
+    UsersComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild( routes ),
   ]
 } )
-export class AdminModule { }
+export class UsersModule { }

@@ -12,12 +12,18 @@ import { AuthService } from 'src/app/core/auth.service';
 					<img src="/assets/logo/reados24.png" alt="RL" class="mr-3 text-color-secondary">
 					<span class="text-color">READOS</span>
 				</a>
-				<span class="ml-3" *ngIf="(authService.session$ | async)?.user?.type === 'admin'">
+				<span class="ml-5" *ngIf="(authService.session$ | async)?.user?.type === 'admin'">
+					<a class="no-underline text-color mr-3" routerLink="/admin/tickets" routerLinkActive="border-bottom border-3 border-white">
+						Tickets
+					</a>
 					<a class="no-underline text-color mr-3" routerLink="/admin/users" routerLinkActive="border-bottom border-3 border-white">
 						Users
 					</a>
-					<a class="no-underline text-color mr-3" routerLink="/admin/tickets" routerLinkActive="border-bottom border-3 border-white">
-						Tickets
+					<a class="no-underline text-color mr-3" routerLink="/admin/companies" routerLinkActive="border-bottom border-3 border-white">
+						Companies
+					</a>
+					<a class="no-underline text-color mr-3" routerLink="/admin/customers" routerLinkActive="border-bottom border-3 border-white">
+						Customers
 					</a>
 				</span>
 				<span class="ml-auto">
