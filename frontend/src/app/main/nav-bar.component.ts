@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CoreDefinitionsService } from 'src/app/services/core-definitions.service';
-import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
+// import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
+import { faCompress } from '@fortawesome/free-solid-svg-icons/faCompress';
+import { faExpand } from '@fortawesome/free-solid-svg-icons/faExpand';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component( {

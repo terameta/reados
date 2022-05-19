@@ -8,9 +8,12 @@ EXECUTE ensureTextFieldinTable('user', 'email');
 EXECUTE ensureTextFieldinTable('user', 'password');
 EXECUTE ensureTextFieldinTable('user', 'type');
 EXECUTE ensureBooleanFieldinTable('user', 'isPrimaryAdmin', true, false);
+EXECUTE ensureJSONFieldinTable('user', 'details');
 EXECUTE ensureTimeStampZFieldinTable('user', 'createdAt');
 ALTER TABLE IF EXISTS public."user" ALTER COLUMN "createdAt" SET DEFAULT now();
 ALTER TABLE IF EXISTS public."user" ALTER COLUMN "isPrimaryAdmin" SET DEFAULT false;
+ALTER TABLE IF EXISTS public."user" ALTER COLUMN "details" SET DEFAULT '{}'::JSON;
+UPDATE public."user" SET "details" = '{}'::JSON WHERE "details" IS NULL;
 
 CREATE UNIQUE INDEX IF NOT EXISTS user_email_unique
     ON public."user" USING btree

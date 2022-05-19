@@ -5,7 +5,10 @@ import { filter, takeWhile } from 'rxjs/operators';
 import isStrongPassword from 'validator/es/lib/isStrongPassword';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
+// import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons/faEyeSlash';
+import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 
 @Component( {
 	selector: 'app-sign-up',
@@ -31,11 +34,9 @@ import { faEye, faEyeSlash, faKey } from '@fortawesome/free-solid-svg-icons';
 							<label for="password" class="w-full mt-3">Your Password</label>
 							<div class="p-inputgroup">
 								<input type="password" pPassword class="w-full" placeholder="Password" formControlName="password" [feedback]="false" [showPassword]="isPasswordClear" required>
-								<span class="p-inputgroup-adon">
-									<button pButton pRipple type="button" (click)="isPasswordClear = !isPasswordClear" class="border-noround-left">
-										<fa-icon [icon]="isPasswordClear ? faEyeSlash : faEye" class="text-light"></fa-icon>
-									</button>
-								</span>
+								<button pButton pRipple type="button" (click)="isPasswordClear = !isPasswordClear">
+									<fa-icon [icon]="isPasswordClear ? faEyeSlash : faEye" class="text-light"></fa-icon>
+								</button>
 							</div>
 							<small class="w-full text-right text-red-500" *ngIf="password?.invalid && (password?.touched || password?.dirty)">
 								<div *ngIf="password?.errors">Password must be at least 8 characters long, contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol.</div>
