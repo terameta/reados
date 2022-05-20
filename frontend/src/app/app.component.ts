@@ -4,7 +4,7 @@ import { AuthService } from './services/auth.service';
 @Component( {
 	selector: 'app-root',
 	template: `
-		<p-toast key="main"></p-toast>
+		<p-toast key="main" position="bottom-right"></p-toast>
 		<p-toast key="center" position="center"></p-toast>
 		<router-outlet></router-outlet>
 	`,

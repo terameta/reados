@@ -29,7 +29,7 @@
 				"../utilities/*"
 			],
 			"@typedefs/*": [
-				"../types/*"
+				"../typedefs/*"
 			]
 		}
 	},

@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component( {
 	selector: 'app-nav-bar',
 	template: `
-		<nav class="fixed top-0 left-0 w-full font-bold shadow-2 surface-ground">
+		<nav class="fixed top-0 left-0 w-full font-bold shadow-2">
 			<div class="flex align-items-center py-2 px-3">
 				<a class="font-bold flex align-items-center no-underline text-3xl" [routerLink]="(authService.session$ | async)?.user?.type === 'admin' ? '/admin' : '/'">
 					<img src="/assets/logo/reados24.png" alt="RL" class="mr-3 text-color-secondary">
@@ -17,8 +17,7 @@ import { AuthService } from 'src/app/services/auth.service';
 				<span class="ml-5" *ngIf="(authService.session$ | async)?.user?.type === 'admin'">
 					<a class="no-underline text-color mr-3" routerLink="/admin/tickets" routerLinkActive="border-bottom-3 border-black">Tickets</a>
 					<a class="no-underline text-color mr-3" routerLink="/admin/users" routerLinkActive="border-bottom-3 border-black">Users</a>
-					<a class="no-underline text-color mr-3" routerLink="/admin/companies" routerLinkActive="border-bottom-3 border-black">Companies</a>
-					<a class="no-underline text-color mr-3" routerLink="/admin/customers" routerLinkActive="border-bottom-3 border-black">Customers</a>
+					<a class="no-underline text-color mr-3" routerLink="/admin/customers" routerLinkActive="border-bottom-3 border-black">Companies & Customers</a>
 				</span>
 				<span class="ml-auto">
 					<ng-container *ngIf="!(authService.isAuthenticated$ | async)">

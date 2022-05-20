@@ -1,38 +1,32 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { User } from '@typedefs/user';
-import { getDB } from '../utilities/database/generate-connection';
-import { verify } from 'jsonwebtoken';
+import { getDB } from '../utilities/database/connect';
+import { verifyAuth } from '../utilities/functions4af/verify-auth';
+import { Client } from 'pg';
+import { userFromDB } from '../typedefs/user';
+import { respondAF } from '../utilities/functions4af/send-response';
+import { catchAF } from '../utilities/functions4af/catch-error';
 
 const httpTrigger: AzureFunction = async function ( context: Context, req: HttpRequest ): Promise<void> {
 
-	const db = await getDB();
+	let db: Client | null = null;
 
 	try {
-		const user = verify( req.headers.authorization?.replace( 'Bearer ', '' ) || '', process.env.JWT_SECRET! ) as User;
+		const user = await verifyAuth( req );
 
-		if ( user.type === 'admin' ) {
+		if ( user.type !== 'admin' ) throw new Error( 'Not allowed for customers' );
 
-			const query = 'SELECT * FROM public.user WHERE type = $1';
-			const { rows: users, rowCount } = await db.query( query, [ 'admin' ] );
+		db = await getDB();
 
-			context.res = {
-				// status: 200, /* Defaults to 200 */
-				body: users.map( u => { delete u.password; return u; } )
-			};
-		} else {
-			context.res = {
-				status: 401,
-				body: { message: 'You are not authorized to do this.' }
-			};
-		}
+
+		const query = 'SELECT * FROM public.user WHERE type = $1';
+		const { rows: users } = await db.query( query, [ 'admin' ] );
+
+		await respondAF( context, users.map( u => userFromDB( u ) ) );
 
 	} catch ( error: any ) {
-		context.res = {
-			status: 500,
-			body: { message: 'Server error, please try again.' }
-		};
+		catchAF( context, error );
 	} finally {
-		await db.end();
+		if ( db ) db.end();
 	}
 
 };

@@ -12,6 +12,9 @@ import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
 import { AutoFocusModule } from 'src/app/directives/auto-focus/auto-focus.module';
 import { DropdownModule } from 'primeng/dropdown';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
 
 const routes: Routes = [
 	{ path: '', component: UsersComponent },
@@ -35,6 +38,8 @@ const routes: Routes = [
 		AutoFocusModule,
 		PanelModule,
 		DropdownModule,
+		KeyFilterModule,
+		ConfirmDialogModule,
 	]
 } )
 export class UsersModule { }

@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { getDB } from '../utilities/database/generate-connection';
+import { getDB } from '../utilities/database/connect';
 import { validateCredentials } from '../utilities/validation/credential-validation';
 import { verify } from 'argon2';
 import { sign } from 'jsonwebtoken';

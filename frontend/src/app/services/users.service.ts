@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '@typedefs/user';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { getNonNullValue } from '@utilities/misc/waitNonNull';
+import { User } from '@typedefs/user';
+import { Router } from '@angular/router';
 
 @Injectable( { providedIn: 'root' } )
 export class UsersService {
 
 	public users$ = new BehaviorSubject<User[] | null>( null );
 
-	constructor( private httpClient: HttpClient ) {
+	constructor( private httpClient: HttpClient, private router: Router ) {
 		this.refreshUsers();
 	}
 
@@ -32,5 +33,24 @@ export class UsersService {
 
 	public findUser = async ( id: string ) => {
 		return ( this.users$.getValue() || [] ).find( user => user.id === id );
+	}
+
+	public putUser = async ( user: User ) => {
+		const result = await lastValueFrom( this.httpClient.put<User>( '/func-user-put', user ) );
+		this.refreshUsers();
+	}
+
+	public postUser = async ( user: User ) => {
+		const result = await lastValueFrom( this.httpClient.post<User>( '/func-user-post', user ) );
+		console.log( result );
+		this.router.navigate( [ 'admin', 'users', result.id ] );
+		this.refreshUsers();
+	}
+
+	public deleteUser = async ( id: string ) => {
+		const result = await lastValueFrom( this.httpClient.delete<User>( `/func-user-delete/${ id }` ) );
+		console.log( result );
+		this.router.navigate( [ 'admin', 'users' ] );
+		this.refreshUsers();
 	}
 }

@@ -18,6 +18,7 @@ export type User = {
 export type UserOnDB = {
 	id: string,
 	email: string,
+	password?: string,
 	details: {
 		firstName: string,
 		middleName: string,
@@ -28,7 +29,8 @@ export type UserOnDB = {
 	}
 }
 
-export const userFromDB = ( payload: UserOnDB ): User => {
+export const userFromDB = ( payload: UserOnDB, removePassword = true ): User => {
+	if ( removePassword ) delete payload.password;
 	const toReturn: any = { ...payload, ...payload.details };
 	delete toReturn.details;
 	toReturn.displayName = toReturn.firstName || '';
@@ -42,8 +44,14 @@ export const userToDB = ( payload: User ): UserOnDB => {
 	const toReturn: any = {};
 	toReturn.id = payload.id;
 	toReturn.email = payload.email;
+	toReturn.isPrimaryAdmin = payload.isPrimaryAdmin;
+	toReturn.createdAt = payload.createdAt;
+	toReturn.type = payload.type;
 	toReturn.details = payload;
-	delete toReturn.detail.id;
-	delete toReturn.detail.email;
+	delete toReturn.details.id;
+	delete toReturn.details.email;
+	delete toReturn.details.isPrimaryAdmin;
+	delete toReturn.details.createdAt;
+	delete toReturn.details.type;
 	return toReturn;
 }

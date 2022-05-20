@@ -8,7 +8,7 @@ import { WINDOW_PROVIDERS } from './services/window.providers';
 import { RippleModule } from 'primeng/ripple';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { RouterModule, Routes } from '@angular/router';
 
 
@@ -35,6 +35,7 @@ const routes: Routes = [
 		},
 		WINDOW_PROVIDERS,
 		MessageService,
+		ConfirmationService,
 	],
 	bootstrap: [ AppComponent ],
 } )
